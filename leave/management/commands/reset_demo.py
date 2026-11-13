@@ -22,7 +22,8 @@ class Command(BaseCommand):
         call_command("flush", interactive=False, verbosity=0)
         call_command("loaddata", "demo", verbosity=0)
 
-        # Leïla Haddad (CDD) : entrée il y a 7 mois et 5 jours, quelle que soit la date du jour.
+        # Leïla Haddad (CDD) : entrée il y a 7 mois et 5 jours,
+        # quelle que soit la date du jour.
         today = date.today()
         Employee.objects.filter(pk=4).update(
             hire_date=months_before(today, 7) - timedelta(days=5)
