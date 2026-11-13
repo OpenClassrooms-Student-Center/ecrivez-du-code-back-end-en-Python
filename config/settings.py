@@ -1,5 +1,6 @@
 """Réglages Django du projet Hamac (environnement de développement)."""
 
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -17,6 +18,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
+    "drf_spectacular",
     "leave",
 ]
 
@@ -69,3 +72,20 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # En développement, les e-mails sont affichés dans la console au lieu d'être envoyés.
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 DEFAULT_FROM_EMAIL = "hamac@example.com"
+
+REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema"}
+SPECTACULAR_SETTINGS = {"TITLE": "Hamac API", "VERSION": "1.0.0"}
+
+# Journal des requêtes SQL (écrit uniquement quand DEBUG = True).
+LOGGING = {
+    "version": 1,
+    "handlers": {"console": {"class": "logging.StreamHandler"}},
+    "loggers": {
+        "django.db.backends": {"handlers": ["console"], "level": "DEBUG"},
+    },
+}
+
+# Règles RH : taux des CDD, modifiable sans toucher au code.
+HAMAC_FIXED_TERM_DAYS_PER_FULL_MONTH = float(
+    os.environ.get("HAMAC_FIXED_TERM_DAYS_PER_FULL_MONTH", "2.08")
+)

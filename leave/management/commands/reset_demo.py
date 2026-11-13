@@ -29,4 +29,7 @@ class Command(BaseCommand):
             hire_date=months_before(today, 7) - timedelta(days=5)
         )
 
+        # Zoé Mendes (stage) : arrive dans 7 jours, quelle que soit la date du jour.
+        Employee.objects.filter(pk=6).update(hire_date=date.today() + timedelta(days=7))
+
         self.stdout.write(self.style.SUCCESS("Jeu de démonstration chargé."))

@@ -55,6 +55,17 @@
     }
   },
   {
+    "model": "leave.employee",
+    "pk": 6,
+    "fields": {
+      "first_name": "Zoé",
+      "last_name": "Mendes",
+      "contract_type": "Stage",
+      "hire_date": "2026-01-01",
+      "days_taken": 0
+    }
+  },
+  {
     "model": "leave.leaverequest",
     "pk": 1,
     "fields": {

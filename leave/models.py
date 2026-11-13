@@ -8,6 +8,15 @@ class Employee(models.Model):
     hire_date = models.DateField()
     days_taken = models.FloatField(default=0)
 
+    def __str__(self) -> str:
+        return f"{self.first_name} {self.last_name}"
+
+
+class LeaveStatus(models.TextChoices):
+    PENDING = "Pending"
+    APPROVED = "Approved"
+    REFUSED = "Refused"
+
 
 class LeaveRequest(models.Model):
     employee = models.ForeignKey(
@@ -16,4 +25,9 @@ class LeaveRequest(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     working_days = models.PositiveIntegerField()
-    status = models.CharField(max_length=20, default="Pending")
+    status = models.CharField(
+        max_length=20, choices=LeaveStatus, default=LeaveStatus.PENDING
+    )
+
+    def __str__(self) -> str:
+        return f"Demande n° {self.pk} ({self.status})"

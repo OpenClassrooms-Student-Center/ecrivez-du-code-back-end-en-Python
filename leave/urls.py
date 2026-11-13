@@ -1,8 +1,12 @@
-from django.urls import path
+from django.urls import include, path
+from rest_framework.routers import SimpleRouter
 
 from . import views
 
+router = SimpleRouter(trailing_slash=False)
+router.register("leave-requests", views.LeaveRequestViewSet, basename="leave-request")
+
 urlpatterns = [
-    path("balance", views.balance),
-    path("approve", views.approve),
+    path("employees/<int:employee_id>/balance", views.employee_balance),
+    path("", include(router.urls)),
 ]
