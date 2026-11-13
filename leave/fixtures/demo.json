@@ -1,0 +1,145 @@
+[
+  {
+    "model": "leave.employee",
+    "pk": 1,
+    "fields": {
+      "first_name": "Amina",
+      "last_name": "Diallo",
+      "contract_type": "CDI",
+      "hire_date": "2022-08-23",
+      "days_taken": 8.0
+    }
+  },
+  {
+    "model": "leave.employee",
+    "pk": 2,
+    "fields": {
+      "first_name": "Karim",
+      "last_name": "Benali",
+      "contract_type": "CDI",
+      "hire_date": "2020-05-18",
+      "days_taken": 12.0
+    }
+  },
+  {
+    "model": "leave.employee",
+    "pk": 3,
+    "fields": {
+      "first_name": "Mei",
+      "last_name": "Chen",
+      "contract_type": "Alternance",
+      "hire_date": "2025-09-22",
+      "days_taken": 6.0
+    }
+  },
+  {
+    "model": "leave.employee",
+    "pk": 4,
+    "fields": {
+      "first_name": "Leïla",
+      "last_name": "Haddad",
+      "contract_type": "CDD",
+      "hire_date": "2026-01-01",
+      "days_taken": 10.0
+    }
+  },
+  {
+    "model": "leave.employee",
+    "pk": 5,
+    "fields": {
+      "first_name": "Sofia",
+      "last_name": "Rossi",
+      "contract_type": "CDD",
+      "hire_date": "2025-11-20",
+      "days_taken": 4.0
+    }
+  },
+  {
+    "model": "leave.leaverequest",
+    "pk": 1,
+    "fields": {
+      "employee": 1,
+      "start_date": "2026-11-09",
+      "end_date": "2026-11-13",
+      "working_days": 5,
+      "status": "Pending"
+    }
+  },
+  {
+    "model": "leave.leaverequest",
+    "pk": 2,
+    "fields": {
+      "employee": 3,
+      "start_date": "2026-09-14",
+      "end_date": "2026-09-16",
+      "working_days": 3,
+      "status": "Approved"
+    }
+  },
+  {
+    "model": "leave.leaverequest",
+    "pk": 3,
+    "fields": {
+      "employee": 2,
+      "start_date": "2026-11-23",
+      "end_date": "2026-11-24",
+      "working_days": 2,
+      "status": "Pending"
+    }
+  },
+  {
+    "model": "leave.leaverequest",
+    "pk": 4,
+    "fields": {
+      "employee": 5,
+      "start_date": "2026-10-05",
+      "end_date": "2026-10-08",
+      "working_days": 4,
+      "status": "Approved"
+    }
+  },
+  {
+    "model": "leave.leaverequest",
+    "pk": 5,
+    "fields": {
+      "employee": 3,
+      "start_date": "2026-11-16",
+      "end_date": "2026-11-20",
+      "working_days": 5,
+      "status": "Refused"
+    }
+  },
+  {
+    "model": "leave.leaverequest",
+    "pk": 6,
+    "fields": {
+      "employee": 2,
+      "start_date": "2026-08-24",
+      "end_date": "2026-08-28",
+      "working_days": 5,
+      "status": "Approved"
+    }
+  },
+  {
+    "model": "leave.leaverequest",
+    "pk": 7,
+    "fields": {
+      "employee": 4,
+      "start_date": "2026-11-30",
+      "end_date": "2026-12-04",
+      "working_days": 5,
+      "status": "Pending"
+    }
+  },
+  {
+    "model": "leave.leaverequest",
+    "pk": 8,
+    "fields": {
+      "employee": 5,
+      "start_date": "2026-12-07",
+      "end_date": "2026-12-08",
+      "working_days": 2,
+      "status": "Pending"
+    }
+  }
+]
