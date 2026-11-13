@@ -1,0 +1,216 @@
+openapi: 3.0.3
+info:
+  title: Hamac API
+  version: 1.0.0
+paths:
+  /api/employees/{employee_id}/balance:
+    get:
+      operationId: employees_balance_retrieve
+      parameters:
+      - in: path
+        name: employee_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - employees
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Balance'
+          description: ''
+  /api/leave-requests:
+    get:
+      operationId: leave_requests_list
+      parameters:
+      - in: query
+        name: status
+        schema:
+          enum:
+          - Pending
+          - Approved
+          - Refused
+          type: string
+          minLength: 1
+        description: |-
+          * `Pending` - Pending
+          * `Approved` - Approved
+          * `Refused` - Refused
+      tags:
+      - leave-requests
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LeaveRequest'
+          description: ''
+    post:
+      operationId: leave_requests_create
+      tags:
+      - leave-requests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLeaveRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateLeaveRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateLeaveRequest'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaveRequest'
+          description: ''
+  /api/leave-requests/{id}:
+    get:
+      operationId: leave_requests_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          pattern: ^\d+$
+        required: true
+      tags:
+      - leave-requests
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaveRequest'
+          description: ''
+  /api/leave-requests/{id}/approval:
+    post:
+      operationId: leave_requests_approval_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          pattern: ^\d+$
+        required: true
+      tags:
+      - leave-requests
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaveRequest'
+          description: ''
+  /api/leave-requests/{id}/refusal:
+    post:
+      operationId: leave_requests_refusal_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          pattern: ^\d+$
+        required: true
+      tags:
+      - leave-requests
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaveRequest'
+          description: ''
+components:
+  schemas:
+    Balance:
+      type: object
+      properties:
+        employeeId:
+          type: integer
+        balance:
+          type: number
+          format: double
+      required:
+      - balance
+      - employeeId
+    CreateLeaveRequest:
+      type: object
+      properties:
+        employeeId:
+          type: integer
+          minimum: 1
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+      required:
+      - employeeId
+      - endDate
+      - startDate
+    LeaveRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+        employeeId:
+          type: integer
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        workingDays:
+          type: integer
+        status:
+          type: string
+      required:
+      - employeeId
+      - endDate
+      - id
+      - startDate
+      - status
+      - workingDays
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
