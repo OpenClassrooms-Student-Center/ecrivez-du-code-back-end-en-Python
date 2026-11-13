@@ -74,7 +74,12 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 DEFAULT_FROM_EMAIL = "hamac@example.com"
 
 REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema"}
-SPECTACULAR_SETTINGS = {"TITLE": "Hamac API", "VERSION": "1.0.0"}
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Hamac API",
+    "VERSION": "1.0.0",
+    # Le schéma ne décrit pas sa propre route : il reste identique avec ou sans DEBUG.
+    "SERVE_INCLUDE_SCHEMA": False,
+}
 
 # Journal des requêtes SQL (écrit uniquement quand DEBUG = True).
 LOGGING = {
